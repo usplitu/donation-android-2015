@@ -5,12 +5,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 
 public class Donate extends AppCompatActivity
 {
 
   private Button donateButton;
+  private RadioGroup paymentMethod;
+  private ProgressBar progressBar;
+  private NumberPicker amountPicker;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -19,9 +26,12 @@ public class Donate extends AppCompatActivity
     setContentView(R.layout.activity_donate);
 
     donateButton = (Button) findViewById(R.id.donateButton);
-    if (donateButton != null) {
-      Log.v("Donate", "Really got the donate button");
-    }
+    paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
+    progressBar   = (ProgressBar)  findViewById(R.id.progressBar);
+    amountPicker  = (NumberPicker) findViewById(R.id.amountPicker);
+
+    amountPicker.setMinValue(0);
+    amountPicker.setMaxValue(1000);
 
   }
 
@@ -31,6 +41,12 @@ public class Donate extends AppCompatActivity
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_donate, menu);
     return true;
+  }
+
+
+  public void donateButtonPressed (View view)
+  {
+    Log.v("Donate", "Donate Pressed!");
   }
 
   @Override
