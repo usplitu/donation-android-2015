@@ -14,10 +14,11 @@ import android.widget.ProgressBar;
 public class Donate extends AppCompatActivity
 {
 
-  private Button donateButton;
-  private RadioGroup paymentMethod;
-  private ProgressBar progressBar;
+  private Button       donateButton;
+  private RadioGroup   paymentMethod;
+  private ProgressBar  progressBar;
   private NumberPicker amountPicker;
+  private int          totalDonated;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +33,7 @@ public class Donate extends AppCompatActivity
 
     amountPicker.setMinValue(0);
     amountPicker.setMaxValue(1000);
+    progressBar.setMax(10000);
 
   }
 
@@ -49,7 +51,10 @@ public class Donate extends AppCompatActivity
     int amount = amountPicker.getValue();
     int radioId = paymentMethod.getCheckedRadioButtonId();
     String method = radioId == R.id.PayPal ? "PayPal" : "Direct";
+    totalDonated = totalDonated + amount;
+    progressBar.setProgress(totalDonated);
     Log.v("Donate", "Donate Pressed! with amount " + amount + ", method: " + method);
+    Log.v("Donate", "Current total " + totalDonated);
   }
 
   @Override
