@@ -84,7 +84,8 @@ public class Donate extends AppCompatActivity
     Log.v("Donate", donatedAmount + " donated by " + method + " Current total " + totalDonated);
     progressBar.setProgress(totalDonated);
 
-
+    String totalDonatedStr = "$" + totalDonated;
+    amountTotal.setText(totalDonatedStr);
   }
 
   @Override
