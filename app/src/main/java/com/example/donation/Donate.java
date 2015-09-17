@@ -2,17 +2,27 @@ package com.example.donation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class Donate extends AppCompatActivity
 {
+
+  private Button donateButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_donate);
+
+    donateButton = (Button) findViewById(R.id.donateButton);
+    if (donateButton != null) {
+      Log.v("Donate", "Really got the donate button");
+    }
+
   }
 
   @Override
