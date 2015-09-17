@@ -7,9 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class Donate extends AppCompatActivity
 {
@@ -20,20 +22,27 @@ public class Donate extends AppCompatActivity
   private NumberPicker amountPicker;
   private int          totalDonated;
 
+  private TextView     amountText;
+  private TextView     amountTotal;
+
   @Override
   protected void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_donate);
 
-    donateButton = (Button) findViewById(R.id.donateButton);
+    donateButton  = (Button) findViewById(R.id.donateButton);
     paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
     progressBar   = (ProgressBar)  findViewById(R.id.progressBar);
     amountPicker  = (NumberPicker) findViewById(R.id.amountPicker);
 
+    amountText    = (EditText)     findViewById(R.id.amountText);
+
     amountPicker.setMinValue(0);
     amountPicker.setMaxValue(1000);
     progressBar.setMax(10000);
+
+    totalDonated = 0;
 
   }
 
@@ -48,13 +57,18 @@ public class Donate extends AppCompatActivity
 
   public void donateButtonPressed (View view)
   {
-    int amount = amountPicker.getValue();
-    int radioId = paymentMethod.getCheckedRadioButtonId();
-    String method = radioId == R.id.PayPal ? "PayPal" : "Direct";
-    totalDonated = totalDonated + amount;
+    String method = paymentMethod.getCheckedRadioButtonId() == R.id.PayPal ? "PayPal" : "Direct";
     progressBar.setProgress(totalDonated);
-    Log.v("Donate", "Donate Pressed! with amount " + amount + ", method: " + method);
-    Log.v("Donate", "Current total " + totalDonated);
+
+    int donatedAmount =  amountPicker.getValue();
+    if (donatedAmount == 0)
+    {
+      String text = amountText.getText().toString();
+      if (!text.equals(""))
+        donatedAmount = Integer.parseInt(text);
+    }
+    totalDonated  = totalDonated + donatedAmount;
+    Log.v("Donate", amountPicker.getValue() + " donated by " + method + "\nCurrent total " + totalDonated);
   }
 
   @Override
