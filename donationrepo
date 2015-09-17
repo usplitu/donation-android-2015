@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Run this script once only.
+# Run script from your /home/ictskills/repo folder
+
+# Update local repo
+cd ~/repo/donation-android-2015
+git add .
+git commit -m 'Donation-02 lab'
+
+# Create repo on Bitbuket using https
+# Enclose your password in " "
+curl --user usplitu@hotmail.com:"MTwQkpPhYPV07Lr4" https://api.bitbucket.org/1.0/repositories/ --data name=donation-android-2015 --data is_private='true'
+
+# First push to new repo
+git remote add origin https://oaklodge@bitbucket.org/oaklodge/donation-android-2015.git
+git push -u origin --all  
+git push -u origin --tags  
