@@ -1,4 +1,4 @@
-package com.example.donation;
+package app.donation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.donation.R;
+
 
 public class Donate extends AppCompatActivity
 {
