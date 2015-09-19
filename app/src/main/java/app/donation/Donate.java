@@ -1,5 +1,6 @@
 package app.donation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +14,6 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.donation.R;
 
 
 public class Donate extends AppCompatActivity
@@ -96,9 +95,7 @@ public class Donate extends AppCompatActivity
   {
     switch (item.getItemId())
     {
-      case R.id.menuReport:
-        Toast toast = Toast.makeText(this, "Report Selected", Toast.LENGTH_SHORT);
-        toast.show();
+      case R.id.menuReport : startActivity (new Intent(this, Report.class));
         break;
     }
     return true;
